@@ -13,18 +13,29 @@ public class LevelEditorScene extends Scene {
 
     }
 
+    private Spritesheet sprites0,sprites1, kidlesheet, kwalksheet;
+    private GameObject knightidle, knightwalk;
+
     @Override
     public void init() {
         loadResources();
 
         this.camera = new Camera(new Vector2f(-250, 0));
 
-        Spritesheet sprites0 = AssetPool.getSpritesheet("assets/images/4kback.jpg");
-        Spritesheet sprites1 = AssetPool.getSpritesheet("assets/images/Tileset.png");
+        sprites0 = AssetPool.getSpritesheet("assets/images/Background.png");
+        sprites1 = AssetPool.getSpritesheet("assets/images/Tileset.png");
+        kidlesheet = AssetPool.getSpritesheet("assets/images/idleknight.png");
 
-        GameObject obj1 = new GameObject("Object 1", new Transform(new Vector2f(-250, 0), new Vector2f(3840, 2160)));
-        obj1.addComponent(new SpriteRenderer(sprites0.getSprite(0)));
-        this.addGameObjectToScene(obj1);
+        GameObject back1 = new GameObject("Object 1", new Transform(new Vector2f(-250, 0), new Vector2f(2560, 1440)));
+        back1.addComponent(new SpriteRenderer(sprites0.getSprite(0)));
+        this.addGameObjectToScene(back1);
+        GameObject back2 = new GameObject("back2", new Transform(new Vector2f(2310, 0), new Vector2f(2560, 1440)));
+        back2.addComponent(new SpriteRenderer(sprites0.getSprite(0)));
+        this.addGameObjectToScene(back2);
+
+        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 128), new Vector2f(64, 64)));
+        knightidle.addComponent(new SpriteRenderer(kidlesheet.getSprite(0)));
+        this.addGameObjectToScene(knightidle);
 
         GameObject obj2 = new GameObject("Object 2", new Transform(new Vector2f(-100, 100), new Vector2f(48, 48)));
         obj2.addComponent(new SpriteRenderer(sprites1.getSprite(58)));
@@ -50,38 +61,63 @@ public class LevelEditorScene extends Scene {
     private void loadResources() {
         AssetPool.getShader("assets/shaders/default.glsl");
 
-        AssetPool.addSpritesheet("assets/images/4kback.jpg",
-                new Spritesheet(AssetPool.getTexture("assets/images/4kback.jpg"),
-                        3840, 2160, 1, 0));
+        AssetPool.addSpritesheet("assets/images/Background.png",
+                new Spritesheet(AssetPool.getTexture("assets/images/Background.png"),
+                        1920, 1080, 1, 0));
         AssetPool.addSpritesheet("assets/images/Tileset.png",
                 new Spritesheet(AssetPool.getTexture("assets/images/Tileset.png"),
                         48, 48, 182, 0));
+        AssetPool.addSpritesheet("assets/images/idleknight.png",
+                new Spritesheet(AssetPool.getTexture("assets/images/idleknight.png"),
+                        64, 64, 15, 0));
     }
+
+    private int spriteIndex = 0;
+    private float spriteFlipTime = 0.08f;
+    private float spriteFlipTimeLeft = 0.0f;
+    private float speed = 50f;
 
     @Override
     public void update(float dt) {
+        if (!(KeyListener.isKeyPressed(GLFW_KEY_UP) ||KeyListener.isKeyPressed(GLFW_KEY_DOWN)||KeyListener.isKeyPressed(GLFW_KEY_LEFT)||KeyListener.isKeyPressed(GLFW_KEY_RIGHT))){
+            spriteFlipTimeLeft -= dt;
+            if (spriteFlipTimeLeft <= 0) {
+                spriteFlipTimeLeft = spriteFlipTime;
+                spriteIndex++;
+                if (spriteIndex > 14) {
+                    spriteIndex = 0;
+                }
+                knightidle.getComponent(SpriteRenderer.class).setSprite(kidlesheet.getSprite(spriteIndex));
+            }
+        }
         if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) {
-            if (camera.position.x < 2310){
-                camera.position.x += 500f * dt;
+            if (camera.position.x < 3590){
+                camera.position.x += speed * dt;
             }else
-                camera.position.x = 2310;
+                camera.position.x = 3590;
         } else if (KeyListener.isKeyPressed(GLFW_KEY_LEFT)) {
             if (camera.position.x > -250){
-                camera.position.x -= 500f * dt;
+                camera.position.x -= speed * dt;
             }else
                 camera.position.x = -250;
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_UP)) {
-            if (camera.position.y<1480){
-                camera.position.y += 500f * dt;
+            if (camera.position.y<760){
+                camera.position.y += speed * dt;
             }else
-                camera.position.y = 1480;
+                camera.position.y = 760;
         } else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
             if (camera.position.y>0){
-            camera.position.y -= 500f * dt;
-            }else
+            camera.position.y -= speed * dt;
+            }else{
                 camera.position.y = 0;
         }
+
+            for (GameObject go : this.gameObjects) {
+                go.update(dt);
+            }
+        }
+
 
         for (GameObject go : this.gameObjects) {
             go.update(dt);
