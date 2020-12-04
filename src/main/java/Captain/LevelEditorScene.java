@@ -42,9 +42,9 @@ public class LevelEditorScene extends Scene {
         GameObject back1 = new GameObject("Object 1", new Transform(new Vector2f(-250, 0), new Vector2f(1920, 1080)));
         back1.addComponent(new SpriteRenderer(sprites0.getSprite(0)));
         this.addGameObjectToScene(back1);
-        GameObject back2 = new GameObject("back2", new Transform(new Vector2f(2310, 0), new Vector2f(1920, 1080)));
-        back2.addComponent(new SpriteRenderer(sprites0.getSprite(0)));
-        this.addGameObjectToScene(back2);
+//        GameObject back2 = new GameObject("back2", new Transform(new Vector2f(1670, 0), new Vector2f(1920, 1080)));
+//        back2.addComponent(new SpriteRenderer(sprites0.getSprite(0)));
+//        this.addGameObjectToScene(back2);
 
         //Obj knight
         knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 115), new Vector2f(100, 100)));
@@ -68,6 +68,10 @@ public class LevelEditorScene extends Scene {
         GameObject tree_6 = new GameObject("tree_6", new Transform(new Vector2f(1340, 148), new Vector2f(141, 168)));
         tree_6.addComponent(new SpriteRenderer(tree2.getSprite(0)));
         this.addGameObjectToScene(tree_6);
+
+        GameObject tree_10 = new GameObject("tree_6", new Transform(new Vector2f(1340, 148), new Vector2f(141, 168)));
+        tree_10.addComponent(new SpriteRenderer(tree3.getSprite(0)));
+        this.addGameObjectToScene(tree_10);
 
         GameObject obj67 = new GameObject("Object 67 crave", new Transform(new Vector2f(1340, 148), new Vector2f(48, 48)));
         obj67.addComponent(new SpriteRenderer(sprites_forest.getSprite(47)));
@@ -760,7 +764,7 @@ public class LevelEditorScene extends Scene {
     private int spriteIndex = 0;
     private float spriteFlipTime = 0.08f;
     private float spriteFlipTimeLeft = 0.0f;
-    private float speed = 50f;
+    private float speed = 200f;
 
     @Override
     public void update(float dt) {
@@ -776,10 +780,10 @@ public class LevelEditorScene extends Scene {
             }
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) {
-            if (camera.position.x < 3590){
+            if (camera.position.x < 390){
                 camera.position.x += speed * dt;
             }else
-                camera.position.x = 3590;
+                camera.position.x = 390;
         } else if (KeyListener.isKeyPressed(GLFW_KEY_LEFT)) {
             if (camera.position.x > -250){
                 camera.position.x -= speed * dt;
