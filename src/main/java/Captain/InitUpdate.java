@@ -151,7 +151,7 @@ public class InitUpdate extends Scene {
         obj18_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(60)));
         this.addGameObjectToScene(obj18_skyblock);
 
-        GameObject tree_sky = new GameObject("Object tree sky", new Transform(new Vector2f(-220, 580), new Vector2f(141, 168)), false, true);
+        GameObject tree_sky = new GameObject("Object tree sky", new Transform(new Vector2f(-220, 580), new Vector2f(141, 168)));
         tree_sky.addComponent(new SpriteRenderer(tree2.getSprite(0)));
         this.addGameObjectToScene(tree_sky);
 
@@ -730,23 +730,23 @@ public class InitUpdate extends Scene {
         this.addGameObjectToScene(obj80_sky);
 
         //top floor
-        GameObject tree_9 = new GameObject("tree_9", new Transform(new Vector2f(750, 50), new Vector2f(199, 183)), false, true);
+        GameObject tree_9 = new GameObject("tree_9", new Transform(new Vector2f(750, 50), new Vector2f(199, 183)));
         tree_9.addComponent(new SpriteRenderer(tree1.getSprite(0)));
         this.addGameObjectToScene(tree_9);
 
-        GameObject tree_8 = new GameObject("tree_8", new Transform(new Vector2f(100, 30), new Vector2f(141, 168)), false, true);
+        GameObject tree_8 = new GameObject("tree_8", new Transform(new Vector2f(100, 30), new Vector2f(141, 168)));
         tree_8.addComponent(new SpriteRenderer(tree2.getSprite(0)));
         this.addGameObjectToScene(tree_8);
 
-        GameObject tree_7 = new GameObject("tree_7", new Transform(new Vector2f(200, 148), new Vector2f(141, 168)), false, true);
+        GameObject tree_7 = new GameObject("tree_7", new Transform(new Vector2f(200, 148), new Vector2f(141, 168)));
         tree_7.addComponent(new SpriteRenderer(tree2.getSprite(0)));
         this.addGameObjectToScene(tree_7);
 
-        GameObject tree_6 = new GameObject("tree_6", new Transform(new Vector2f(1340, 148), new Vector2f(141, 168)), false, true);
+        GameObject tree_6 = new GameObject("tree_6", new Transform(new Vector2f(1340, 148), new Vector2f(141, 168)));
         tree_6.addComponent(new SpriteRenderer(tree2.getSprite(0)));
         this.addGameObjectToScene(tree_6);
 
-        GameObject tree_10 = new GameObject("tree_6", new Transform(new Vector2f(1500, 148), new Vector2f(104, 135)), false, true);
+        GameObject tree_10 = new GameObject("tree_6", new Transform(new Vector2f(1500, 148), new Vector2f(104, 135)));
         tree_10.addComponent(new SpriteRenderer(tree3.getSprite(0)));
         this.addGameObjectToScene(tree_10);
 
@@ -806,7 +806,7 @@ public class InitUpdate extends Scene {
         obj54.addComponent(new SpriteRenderer(sprites_forest.getSprite(24)));
         this.addGameObjectToScene(obj54);
 
-        GameObject tree_3 = new GameObject("tree_dry3", new Transform(new Vector2f(616, 290), new Vector2f(199, 183)), false, true);
+        GameObject tree_3 = new GameObject("tree_dry3", new Transform(new Vector2f(616, 290), new Vector2f(199, 183)));
         tree_3.addComponent(new SpriteRenderer(tree1.getSprite(0)));
         this.addGameObjectToScene(tree_3);
 
@@ -842,11 +842,11 @@ public class InitUpdate extends Scene {
         obj52.addComponent(new SpriteRenderer(sprites_forest.getSprite(58)));
         this.addGameObjectToScene(obj52);
 
-        GameObject tree = new GameObject("tree", new Transform(new Vector2f(-292, 145), new Vector2f(199, 183)), false, true);
+        GameObject tree = new GameObject("tree", new Transform(new Vector2f(-292, 145), new Vector2f(199, 183)));
         tree.addComponent(new SpriteRenderer(tree1.getSprite(0)));
         this.addGameObjectToScene(tree);
 
-        GameObject tree_2 = new GameObject("tree", new Transform(new Vector2f(100, 145), new Vector2f(104, 135)), false, true);
+        GameObject tree_2 = new GameObject("tree", new Transform(new Vector2f(100, 145), new Vector2f(104, 135)));
         tree_2.addComponent(new SpriteRenderer(tree3.getSprite(0)));
         this.addGameObjectToScene(tree_2);
 
@@ -1510,7 +1510,6 @@ public class InitUpdate extends Scene {
             if (!go.getIsPlayer() && !go.getIsBackground() && go.getComponent(Bounds.class) != null){
                 if (Bounds.checkCollision(playerBounds, go.getComponent(Bounds.class))){
                     System.out.println("Colliding");
-                    Bounds.resolveCollision(go.getComponent(Bounds.class), knightidle);
                 }
             }
         }
