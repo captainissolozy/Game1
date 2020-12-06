@@ -1,5 +1,6 @@
 package Physic2D.primitives;
 
+import Captain.GameObject;
 import org.joml.Vector2f;
 
 public class BoxBounds extends Bounds{
@@ -39,6 +40,34 @@ public class BoxBounds extends Bounds{
         }
 
         return false;
+    }
+
+    public void resolveCollision(GameObject player){
+        BoxBounds playerBounds = player.getComponent(BoxBounds.class);
+        playerBounds.calculateCenter();
+        this.calculateCenter();
+        float dx = this.center.x - playerBounds.center.x;
+        float dy = this.center.y - playerBounds.center.y;
+
+        float combineHalfWidths = playerBounds.halfWidth+this.halfWidth;
+        float combineHalfHeights = playerBounds.halfHeight+this.halfHeight;
+
+        float overlapX = combineHalfWidths-Math.abs(dx);
+        float overlabY = combineHalfHeights-Math.abs(dy);
+
+//        if (overlapX >= overlabY){
+//            if (dy>0){
+//                player.transform.position.y = gameObject.transform.position.y - playerBounds.getHeight();
+//            }else{
+//                player.transform.position.y = gameObject.transform.position.y + playerBounds.getHeight();
+//            }
+//        }else {
+//            if (dx<0){
+//                player.transform.position.x = gameObject.transform.position.x - playerBounds.getWidth();
+//            }else {
+//                player.transform.position.x = gameObject.transform.position.x + playerBounds.getWidth();
+//            }
+//        }
     }
     @Override
     public float getWidth() {
