@@ -1507,17 +1507,10 @@ public class InitUpdate extends Scene {
 
         for (GameObject go : this.gameObjects) {
             go.update(dt);
-<<<<<<< Updated upstream
             if (!go.getIsPlayer() && !go.getIsBackground() && go.getComponent(Bounds.class) != null){
                 if (Bounds.checkCollision(playerBounds, go.getComponent(Bounds.class))){
                     System.out.println("Colliding");
                     Bounds.resolveCollision(go.getComponent(Bounds.class), knightidle);
-=======
-            Bounds b = go.getComponent(Bounds.class);
-            if (!go.getIsPlayer() && !go.getIsBackground() && b != null){
-                if (Bounds.checkCollision(playerBounds, b)){
-                    Bounds.resolveCollision(b, go);
->>>>>>> Stashed changes
                 }
             }
         }
