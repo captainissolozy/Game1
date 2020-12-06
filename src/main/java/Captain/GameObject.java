@@ -8,6 +8,8 @@ public class GameObject {
     private String name;
     private List<Component> components;
     public Transform transform;
+    private boolean isPlayer=false;
+    private boolean isBackground=false;
 
     public GameObject(String name) {
         this.name = name;
@@ -20,7 +22,13 @@ public class GameObject {
         this.components = new ArrayList<>();
         this.transform = transform;
     }
-
+    public GameObject(String name, Transform transform, boolean isPlayer, boolean isBackground){
+        this.name = name;
+        this.components = new ArrayList<>();
+        this.transform = transform;
+        this.isPlayer = isPlayer;
+        this.isBackground = isBackground;
+    }
     public <T extends Component> T getComponent(Class<T> componentClass) {
         for (Component c : components) {
             if (componentClass.isAssignableFrom(c.getClass())) {
@@ -61,5 +69,11 @@ public class GameObject {
         for (int i=0; i < components.size(); i++) {
             components.get(i).start();
         }
+    }
+    public boolean getIsPlayer(){
+        return isPlayer;
+    }
+    public boolean getIsBackground(){
+        return isBackground;
     }
 }

@@ -2,19 +2,22 @@ package Captain;
 
 import Component.SpriteRenderer;
 import Component.Spritesheet;
+import Physic2D.primitives.Bounds;
+import Physic2D.primitives.BoxBounds;
 import org.joml.Vector2f;
 import util.AssetPool;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-public class LevelEditorScene extends Scene {
+public class InitUpdate extends Scene {
 
-    public LevelEditorScene() {
+    public InitUpdate() {
 
     }
 
     private Spritesheet sprites0,sprites_town,sprites_crave_new ,kidlesheet ,grass , kwalksheet, sprites_forest, maincharectersheet, background_2, sprites_crave2, tree1, tree2, tree3, tree_dry, tree_dry2, tree_dry3, tree_dry4;
     private GameObject knightidle, knightwalk, maincharecter;
+    public BoxBounds playerBounds;
 
     @Override
     public void init() {
@@ -38,10 +41,10 @@ public class LevelEditorScene extends Scene {
         grass = AssetPool.getSpritesheet("assets/images/grass_mo.png");
 
         //Obj background
-        GameObject back1 = new GameObject("Object 1", new Transform(new Vector2f(-250, 0), new Vector2f(1920, 1080)));
+        GameObject back1 = new GameObject("Object 1", new Transform(new Vector2f(-250, 0), new Vector2f(1920, 1080)), false, true);
         back1.addComponent(new SpriteRenderer(sprites0.getSprite(0)));
         this.addGameObjectToScene(back1);
-        GameObject back2 = new GameObject("Object 1", new Transform(new Vector2f(-250, 1080), new Vector2f(1920, 1080)));
+        GameObject back2 = new GameObject("Object 1", new Transform(new Vector2f(-250, 1080), new Vector2f(1920, 1080)), false, true);
         back2.addComponent(new SpriteRenderer(background_2.getSprite(0)));
         this.addGameObjectToScene(back2);
 //        GameObject back2 = new GameObject("back2", new Transform(new Vector2f(1670, 0), new Vector2f(1920, 1080)));
@@ -49,12 +52,13 @@ public class LevelEditorScene extends Scene {
 //        this.addGameObjectToScene(back2);
 
         //Obj knight
-        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 115), new Vector2f(100, 100)));
+        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 115), new Vector2f(100, 100)), true, false);
         knightidle.addComponent(new SpriteRenderer(kidlesheet.getSprite(0)));
         this.addGameObjectToScene(knightidle);
-
+        playerBounds = new BoxBounds(new Vector2f(20,20));
+        knightidle.addComponent(playerBounds);
         //Obj environment
-        //Evironment Skyblocks
+        //Environment Skyblocks
         GameObject obj1_skyblock = new GameObject("Object 1 sky", new Transform(new Vector2f(340, 436), new Vector2f(48, 48)));
         obj1_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(31)));
         this.addGameObjectToScene(obj1_skyblock);
@@ -1379,6 +1383,12 @@ public class LevelEditorScene extends Scene {
         GameObject obj38_2 = new GameObject("Object 38", new Transform(new Vector2f(1628, 4), new Vector2f(48, 48)));
         obj38_2.addComponent(new SpriteRenderer(sprites_forest.getSprite(11)));
         this.addGameObjectToScene(obj38_2);
+
+        for (GameObject g : gameObjects){
+            if (!g.getIsPlayer() && !g.getIsBackground()){
+                g.addComponent(new BoxBounds(new Vector2f(24,24)));
+            }
+        }
     }
 
     private void loadResources() {
@@ -1450,36 +1460,53 @@ public class LevelEditorScene extends Scene {
             }
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) { //This reference by grids (32 grids), No! it's not a pixel!...
+            knightidle.transform.position.x += speed*dt;
             if (camera.position.x < 360){
                 camera.position.x += speed * dt;
-            }else
+            }else{
                 camera.position.x = 360;
+
+                }
         } else if (KeyListener.isKeyPressed(GLFW_KEY_LEFT)) {
+            knightidle.transform.position.x -= speed*dt;
             if (camera.position.x > -250){
                 camera.position.x -= speed * dt;
-            }else
+
+            }else{
                 camera.position.x = -250;
+
+                }
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_UP)) {
+            knightidle.transform.position.y += speed*dt;
             if (camera.position.y<1500){
                 camera.position.y += speed * dt;
-            }else
+
+            }else{
                 camera.position.y = 1500;
+
+                }
         } else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
+            knightidle.transform.position.y -= speed*dt;
             if (camera.position.y>0){
             camera.position.y -= speed * dt;
+
             }else{
                 camera.position.y = 0;
+
         }
 
-            for (GameObject go : this.gameObjects) {
-                go.update(dt);
-            }
+
         }
 
 
         for (GameObject go : this.gameObjects) {
             go.update(dt);
+            if (!go.getIsPlayer() && !go.getIsBackground() && go.getComponent(Bounds.class) != null){
+                if (Bounds.checkCollision(playerBounds, go.getComponent(Bounds.class))){
+                    System.out.println("Colliding");
+                }
+            }
         }
 
         this.renderer.render();

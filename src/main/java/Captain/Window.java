@@ -34,12 +34,12 @@ public class Window {
     public static void changeScene(int newScene) {
         switch (newScene) {
             case 0:
-                currentScene = new LevelEditorScene();
+                currentScene = new InitUpdate();
                 currentScene.init();
                 currentScene.start();
                 break;
             case 1:
-                currentScene = new LevelScene();
+
                 currentScene.init();
                 currentScene.start();
                 break;
@@ -97,9 +97,7 @@ public class Window {
             throw new IllegalStateException("Failed to create the GLFW window.");
         }
 
-        glfwSetCursorPosCallback(glfwWindow, MouseListener::mousePosCallback);
-        glfwSetMouseButtonCallback(glfwWindow, MouseListener::mouseButtonCallback);
-        glfwSetScrollCallback(glfwWindow, MouseListener::mouseScrollCallback);
+
         glfwSetKeyCallback(glfwWindow, KeyListener::keyCallback);
 
         // Make the OpenGL context current
@@ -144,5 +142,13 @@ public class Window {
             dt = endTime - beginTime;
             beginTime = endTime;
         }
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 }
