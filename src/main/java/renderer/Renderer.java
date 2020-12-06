@@ -16,10 +16,12 @@ public class Renderer {
 
     public void add(GameObject go) {
         SpriteRenderer spr = go.getComponent(SpriteRenderer.class);
+
         if (spr != null) {
             add(spr);
         }
     }
+
 
     private void add(SpriteRenderer sprite) {
         boolean added = false;

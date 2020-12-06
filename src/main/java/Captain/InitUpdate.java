@@ -52,10 +52,10 @@ public class InitUpdate extends Scene {
 //        this.addGameObjectToScene(back2);
 
         //Obj knight
-        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 115), new Vector2f(100, 100)), true, false);
+        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 115), new Vector2f(100, 100)));
         knightidle.addComponent(new SpriteRenderer(kidlesheet.getSprite(0)));
         this.addGameObjectToScene(knightidle);
-        playerBounds = new BoxBounds(new Vector2f(20,20));
+        playerBounds = new BoxBounds(new Vector2f(18,12));
         knightidle.addComponent(playerBounds);
         //Obj environment
         //Environment Skyblocks
@@ -1386,9 +1386,14 @@ public class InitUpdate extends Scene {
 
         for (GameObject g : gameObjects){
             if (!g.getIsPlayer() && !g.getIsBackground()){
-                g.addComponent(new BoxBounds(new Vector2f(24,24)));
+                g.addComponent(new BoxBounds(new Vector2f(17,16)));
+            }
+            if (g.getIsPlayer()){
+
             }
         }
+
+
     }
 
     private void loadResources() {
@@ -1502,10 +1507,17 @@ public class InitUpdate extends Scene {
 
         for (GameObject go : this.gameObjects) {
             go.update(dt);
+<<<<<<< Updated upstream
             if (!go.getIsPlayer() && !go.getIsBackground() && go.getComponent(Bounds.class) != null){
                 if (Bounds.checkCollision(playerBounds, go.getComponent(Bounds.class))){
                     System.out.println("Colliding");
                     Bounds.resolveCollision(go.getComponent(Bounds.class), knightidle);
+=======
+            Bounds b = go.getComponent(Bounds.class);
+            if (!go.getIsPlayer() && !go.getIsBackground() && b != null){
+                if (Bounds.checkCollision(playerBounds, b)){
+                    Bounds.resolveCollision(b, go);
+>>>>>>> Stashed changes
                 }
             }
         }

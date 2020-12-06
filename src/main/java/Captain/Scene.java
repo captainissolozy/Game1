@@ -12,6 +12,10 @@ public abstract class Scene {
     private boolean isRunning = false;
     protected List<GameObject> gameObjects = new ArrayList<>();
 
+    public GameObject getGameObject(int index){
+        return gameObjects.get(index);
+    }
+
     public Scene() {
 
     }
@@ -37,6 +41,8 @@ public abstract class Scene {
             this.renderer.add(go);
         }
     }
+
+
 
     public abstract void update(float dt);
 
