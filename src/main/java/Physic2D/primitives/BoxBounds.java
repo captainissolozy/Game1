@@ -55,19 +55,19 @@ public class BoxBounds extends Bounds{
         float overlapX = combineHalfWidths-Math.abs(dx);
         float overlabY = combineHalfHeights-Math.abs(dy);
 
-//        if (overlapX >= overlabY){
-//            if (dy>0){
-//                player.transform.position.y = gameObject.transform.position.y - playerBounds.getHeight();
-//            }else{
-//                player.transform.position.y = gameObject.transform.position.y + playerBounds.getHeight();
-//            }
-//        }else {
-//            if (dx<0){
-//                player.transform.position.x = gameObject.transform.position.x - playerBounds.getWidth();
-//            }else {
-//                player.transform.position.x = gameObject.transform.position.x + playerBounds.getWidth();
-//            }
-//        }
+        if (overlapX >= overlabY){
+            if (dy>0){
+                player.transform.position.y = gameObject.transform.position.y - playerBounds.getHeight();
+            }else{
+                player.transform.position.y = gameObject.transform.position.y + playerBounds.getHeight();
+            }
+        }else {
+            if (dx<0){
+                player.transform.position.x = gameObject.transform.position.x - playerBounds.getWidth();
+            }else {
+                player.transform.position.x = gameObject.transform.position.x + playerBounds.getWidth();
+            }
+        }
     }
     @Override
     public float getWidth() {

@@ -55,7 +55,7 @@ public class InitUpdate extends Scene {
         knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 115), new Vector2f(100, 100)), true, false);
         knightidle.addComponent(new SpriteRenderer(kidlesheet.getSprite(0)));
         this.addGameObjectToScene(knightidle);
-        playerBounds = new BoxBounds(new Vector2f(18,12));
+        playerBounds = new BoxBounds(new Vector2f(5,10));
         knightidle.addComponent(playerBounds);
         //Obj environment
         //Environment Skyblocks
