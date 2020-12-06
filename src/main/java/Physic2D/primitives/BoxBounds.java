@@ -26,20 +26,13 @@ public class BoxBounds extends Bounds{
         this.calculateCenter();
     }
 
-    public static boolean checkCollision(BoxBounds b1, BoxBounds b2){
-        b1.calculateCenter();
-        b2.calculateCenter();
-        float dx = b2.center.x - b1.center.x;
-        float dy = b2.center.y - b1.center.y;
-
-        float combineHalfWidths = b1.halfWidth+b2.halfWidth;
-        float combineHalfHeights = b1.halfHeight+b2.halfHeight;
-
-        if (Math.abs(dx)<= combineHalfWidths){
-            return Math.abs(dy) <= combineHalfHeights;
-        }
-
-        return false;
+    public static boolean checkCollision(GameObject b1, GameObject b2){
+        if (b1.transform.position.x+b1.transform.scale.x >= b2.transform.position.x && b2.transform.position.x+b2.transform.scale.x >= b1.transform.position.x
+                && b1.transform.position.y+b1.transform.scale.y >= b2.transform.position.y && b2.transform.position.y+b2.transform.scale.y >= b1.transform.position.y){
+            System.out.println("Collide");
+            return true;
+        }else
+            return false;
     }
 
     public void resolveCollision(GameObject player){

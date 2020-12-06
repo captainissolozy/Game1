@@ -40,6 +40,7 @@ public class InitUpdate extends Scene {
         tree_dry4 = AssetPool.getSpritesheet("assets/images/object/Ridges/3.png");
         grass = AssetPool.getSpritesheet("assets/images/grass_mo.png");
 
+
         //Obj background
         GameObject back1 = new GameObject("Object 1", new Transform(new Vector2f(-250, 0), new Vector2f(1920, 1080)), false, true);
         back1.addComponent(new SpriteRenderer(sprites0.getSprite(0)));
@@ -52,10 +53,10 @@ public class InitUpdate extends Scene {
 //        this.addGameObjectToScene(back2);
 
         //Obj knight
-        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 115), new Vector2f(100, 100)), true, false);
+        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 115), new Vector2f(50, 100)), true, false);
         knightidle.addComponent(new SpriteRenderer(kidlesheet.getSprite(0)));
         this.addGameObjectToScene(knightidle);
-        playerBounds = new BoxBounds(new Vector2f(5,10));
+        playerBounds = new BoxBounds(new Vector2f(10,15));
         knightidle.addComponent(playerBounds);
         //Obj environment
         //Environment Skyblocks
@@ -151,7 +152,7 @@ public class InitUpdate extends Scene {
         obj18_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(60)));
         this.addGameObjectToScene(obj18_skyblock);
 
-        GameObject tree_sky = new GameObject("Object tree sky", new Transform(new Vector2f(-220, 580), new Vector2f(141, 168))  );
+        GameObject tree_sky = new GameObject("Object tree sky", new Transform(new Vector2f(-220, 580), new Vector2f(141, 168)),false, true  );
         tree_sky.addComponent(new SpriteRenderer(tree2.getSprite(0)));
         this.addGameObjectToScene(tree_sky);
 
@@ -1384,15 +1385,6 @@ public class InitUpdate extends Scene {
         obj38_2.addComponent(new SpriteRenderer(sprites_forest.getSprite(11)));
         this.addGameObjectToScene(obj38_2);
 
-        for (GameObject g : gameObjects){
-            if (!g.getIsPlayer() && !g.getIsBackground()){
-                g.addComponent(new BoxBounds(new Vector2f(17,16)));
-            }
-            if (g.getIsPlayer()){
-
-            }
-        }
-
 
     }
 
@@ -1507,10 +1499,9 @@ public class InitUpdate extends Scene {
 
         for (GameObject go : this.gameObjects) {
             go.update(dt);
-            if (!go.getIsPlayer() && !go.getIsBackground() && go.getComponent(Bounds.class) != null){
-                if (Bounds.checkCollision(playerBounds, go.getComponent(Bounds.class))){
-                    Bounds.resolveCollision(go.getComponent(Bounds.class), knightidle);
-                    System.out.println("Colliding");
+            if (!go.getIsPlayer() && !go.getIsBackground()){
+                if (Bounds.checkCollision(go, knightidle)){
+
                 }
             }
         }
