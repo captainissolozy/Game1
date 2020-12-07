@@ -1481,7 +1481,7 @@ public class InitUpdate extends Scene {
         if (KeyListener.isKeyPressed(GLFW_KEY_UP)) {
             knightidle.transform.position.y += speed*dt;
             if (camera.position.y<1500 && knightidle.transform.position.y < 1500 && knightidle.transform.position.y > 50){
-                camera.position.y += speed * dt;
+                camera.position.y = knightidle.transform.position.y-140;
 
             }else{
                 camera.position.y += 0;
@@ -1490,7 +1490,7 @@ public class InitUpdate extends Scene {
         } else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
             knightidle.transform.position.y -= speed*dt;
             if (camera.position.y>0  && knightidle.transform.position.y < 1500 && knightidle.transform.position.y > 50){
-            camera.position.y -= speed * dt;
+            camera.position.y = knightidle.transform.position.y-140;
 
             }else{
                 camera.position.y -= 0;
