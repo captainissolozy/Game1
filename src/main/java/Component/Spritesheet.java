@@ -11,7 +11,7 @@ public class Spritesheet {
     private Texture texture;
     private List<Sprite> sprites;
 
-    public Spritesheet(Texture texture, int spriteWidth, int spriteHeight, int numSprites, int spacing) {
+    public Spritesheet(Texture texture, double spriteWidth, int spriteHeight, int numSprites, int spacing) {
         this.sprites = new ArrayList<>();
 
         this.texture = texture;
@@ -19,7 +19,7 @@ public class Spritesheet {
         int currentY = texture.getHeight() - spriteHeight;
         for (int i=0; i < numSprites; i++) {
             float topY = (currentY + spriteHeight) / (float)texture.getHeight();
-            float rightX = (currentX + spriteWidth) / (float)texture.getWidth();
+            float rightX = (float) ((currentX + spriteWidth) / (float)texture.getWidth());
             float leftX = currentX / (float)texture.getWidth();
             float bottomY = currentY / (float)texture.getHeight();
 

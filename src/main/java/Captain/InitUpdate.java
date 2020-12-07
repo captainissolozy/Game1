@@ -29,7 +29,7 @@ public class InitUpdate extends Scene {
         background_2 = AssetPool.getSpritesheet("assets/images/Background-2.jpg");
         sprites_town = AssetPool.getSpritesheet("assets/images/Tileset_town.png");
         sprites_forest = AssetPool.getSpritesheet("assets/images/Tileset_forest.png");
-        kidlesheet = AssetPool.getSpritesheet("assets/images/idleknight.png");
+        kidlesheet = AssetPool.getSpritesheet("assets/images/Slime_Walk.png");
         maincharectersheet = AssetPool.getSpritesheet("assets/images/character/Woodcutter_idle.png");
         tree1 = AssetPool.getSpritesheet("assets/images/tree3.png");
         tree2 = AssetPool.getSpritesheet("assets/images/tree2.png");
@@ -53,10 +53,10 @@ public class InitUpdate extends Scene {
 //        this.addGameObjectToScene(back2);
 
         //Obj knight
-        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 115), new Vector2f(50, 100)), true, false);
+        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 155), new Vector2f(50, 50)), true, false);
         knightidle.addComponent(new SpriteRenderer(kidlesheet.getSprite(0)));
         this.addGameObjectToScene(knightidle);
-        playerBounds = new BoxBounds(new Vector2f(10,15));
+        playerBounds = new BoxBounds(new Vector2f(50,50));
         knightidle.addComponent(playerBounds);
         //Obj environment
         //Environment Skyblocks
@@ -1385,6 +1385,11 @@ public class InitUpdate extends Scene {
         obj38_2.addComponent(new SpriteRenderer(sprites_forest.getSprite(11)));
         this.addGameObjectToScene(obj38_2);
 
+        for (GameObject g : gameObjects){
+            if (!g.getIsPlayer() && !g.getIsBackground()){
+                g.addComponent(new BoxBounds(new Vector2f(48,48)));
+            }
+        }
 
     }
 
@@ -1397,9 +1402,9 @@ public class InitUpdate extends Scene {
         AssetPool.addSpritesheet("assets/images/Tileset_town.png",
                 new Spritesheet(AssetPool.getTexture("assets/images/Tileset_town.png"),
                         48, 48, 182, 0));
-        AssetPool.addSpritesheet("assets/images/idleknight.png",
-                new Spritesheet(AssetPool.getTexture("assets/images/idleknight.png"),
-                        64, 64, 15, 0));
+        AssetPool.addSpritesheet("assets/images/Slime_Walk.png",
+                new Spritesheet(AssetPool.getTexture("assets/images/Slime_Walk.png"),
+                        32, 32, 9, 0));
         AssetPool.addSpritesheet("assets/images/character/Woodcutter_idle.png",
                 new Spritesheet(AssetPool.getTexture("assets/images/character/Woodcutter_idle.png"),
                         40, 40, 4, 0));
@@ -1439,57 +1444,56 @@ public class InitUpdate extends Scene {
     }
 
     private int spriteIndex = 0;
-    private float spriteFlipTime = 0.08f;
+    private float spriteFlipTime = 0.13f;
     private float spriteFlipTimeLeft = 0.0f;
     private float speed = 200f;
 
     @Override
     public void update(float dt) {
-        if (!(KeyListener.isKeyPressed(GLFW_KEY_UP) ||KeyListener.isKeyPressed(GLFW_KEY_DOWN)||KeyListener.isKeyPressed(GLFW_KEY_LEFT)||KeyListener.isKeyPressed(GLFW_KEY_RIGHT))){
             spriteFlipTimeLeft -= dt;
             if (spriteFlipTimeLeft <= 0) {
                 spriteFlipTimeLeft = spriteFlipTime;
                 spriteIndex++;
-                if (spriteIndex > 14) {
+                if (spriteIndex > 8) {
                     spriteIndex = 0;
                 }
                 knightidle.getComponent(SpriteRenderer.class).setSprite(kidlesheet.getSprite(spriteIndex));
             }
-        }
+
         if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) { //This reference by grids (32 grids), No! it's not a pixel!...
             knightidle.transform.position.x += speed*dt;
-            if (camera.position.x < 360){
+            if (camera.position.x < 360 && knightidle.transform.position.x < 650 && knightidle.transform.position.x > 50){
                 camera.position.x += speed * dt;
             }else{
-                camera.position.x = 360;
+                camera.position.x += 0;
 
                 }
         } else if (KeyListener.isKeyPressed(GLFW_KEY_LEFT)) {
             knightidle.transform.position.x -= speed*dt;
-            if (camera.position.x > -250){
+            if (camera.position.x > -250 && knightidle.transform.position.x < 650 && knightidle.transform.position.x > 50){
                 camera.position.x -= speed * dt;
 
             }else{
-                camera.position.x = -250;
+                camera.position.x += 0;
 
                 }
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_UP)) {
             knightidle.transform.position.y += speed*dt;
-            if (camera.position.y<1500){
+            if (camera.position.y<1500 && knightidle.transform.position.y < 1500 && knightidle.transform.position.y > 50){
                 camera.position.y += speed * dt;
 
             }else{
-                camera.position.y = 1500;
+                camera.position.y += 0;
 
                 }
         } else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
             knightidle.transform.position.y -= speed*dt;
-            if (camera.position.y>0){
+            if (camera.position.y>0  && knightidle.transform.position.y < 1500 && knightidle.transform.position.y > 50){
             camera.position.y -= speed * dt;
 
             }else{
-                camera.position.y = 0;
+                camera.position.y -= 0;
 
         }
 
@@ -1501,7 +1505,7 @@ public class InitUpdate extends Scene {
             go.update(dt);
             if (!go.getIsPlayer() && !go.getIsBackground()){
                 if (Bounds.checkCollision(go, knightidle)){
-
+                    Bounds.resolveCollision(go.getComponent(Bounds.class), knightidle);
                 }
             }
         }

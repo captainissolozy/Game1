@@ -27,8 +27,8 @@ public class BoxBounds extends Bounds{
     }
 
     public static boolean checkCollision(GameObject b1, GameObject b2){
-        if (b1.transform.position.x+b1.transform.scale.x >= b2.transform.position.x && b2.transform.position.x+b2.transform.scale.x >= b1.transform.position.x
-                && b1.transform.position.y+b1.transform.scale.y >= b2.transform.position.y && b2.transform.position.y+b2.transform.scale.y >= b1.transform.position.y){
+        if (b1.transform.position.x+b1.transform.scale.x-9 >= b2.transform.position.x && b2.transform.position.x+b2.transform.scale.x >= b1.transform.position.x+9
+                && b1.transform.position.y+2+b1.transform.scale.y >= b2.transform.position.y && b2.transform.position.y+b2.transform.scale.y >= b1.transform.position.y){
             System.out.println("Collide");
             return true;
         }else
