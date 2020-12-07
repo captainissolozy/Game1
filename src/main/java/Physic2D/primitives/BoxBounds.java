@@ -1,6 +1,7 @@
 package Physic2D.primitives;
 
 import Captain.GameObject;
+import Captain.KeyListener;
 import org.joml.Vector2f;
 
 public class BoxBounds extends Bounds{
@@ -50,15 +51,15 @@ public class BoxBounds extends Bounds{
 
         if (overlapX >= overlabY){
             if (dy>0){
-                player.transform.position.y = gameObject.transform.position.y - playerBounds.getHeight();
-            }else{
                 player.transform.position.y = gameObject.transform.position.y + playerBounds.getHeight();
+            }else{
+                System.out.println("You die");
             }
         }else {
-            if (dx<0){
-                player.transform.position.x = gameObject.transform.position.x - playerBounds.getWidth();
+            if (dx<0 && dy <=0.3){
+                player.transform.position.y = gameObject.transform.position.y - playerBounds.getHeight();
             }else {
-                player.transform.position.x = gameObject.transform.position.x + playerBounds.getWidth();
+                System.out.println("You die!");
             }
         }
     }
@@ -75,5 +76,26 @@ public class BoxBounds extends Bounds{
     @Override
     public void update(float dt) {
 
+    }
+
+    public int getXDirection() {
+        if (KeyListener.isKeyPressed(262)) {
+            return 1;
+        } else {
+            return KeyListener.isKeyPressed(263) ? -1 : 0;
+        }
+    }
+
+    public int getYDirection() {
+        if (KeyListener.isKeyPressed(265)) {
+            return -1;
+        } else {
+            return KeyListener.isKeyPressed(264) ? 1 : 0;
+        }
+    }
+
+    public void xCauseCollision(){
+        int direction = this.getXDirection();
+        int movement = 10*direction;
     }
 }
