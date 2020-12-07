@@ -3466,7 +3466,7 @@ public class InitUpdate extends Scene {
                         48, 48, 182, 0));
         AssetPool.addSpritesheet("assets/images/Slime_Walk.png",
                 new Spritesheet(AssetPool.getTexture("assets/images/Slime_Walk.png"),
-                        32, 32, 9, 0));
+                        32, 32, 5, 0));
         AssetPool.addSpritesheet("assets/images/character/Woodcutter_idle.png",
                 new Spritesheet(AssetPool.getTexture("assets/images/character/Woodcutter_idle.png"),
                         40, 40, 4, 0));
@@ -3503,17 +3503,18 @@ public class InitUpdate extends Scene {
     }
 
     private int spriteIndex = 0;
-    private float spriteFlipTime = 0.13f;
+    private float spriteFlipTime = 0.14f;
     private float spriteFlipTimeLeft = 0.0f;
-    private float speed = 200f;
+    private float speed = 200f, gravity=100f;
 
     @Override
     public void update(float dt) {
+            knightidle.transform.position.y -= gravity*dt;
             spriteFlipTimeLeft -= dt;
             if (spriteFlipTimeLeft <= 0) {
                 spriteFlipTimeLeft = spriteFlipTime;
                 spriteIndex++;
-                if (spriteIndex > 8) {
+                if (spriteIndex > 4) {
                     spriteIndex = 0;
                 }
                 knightidle.getComponent(SpriteRenderer.class).setSprite(kidlesheet.getSprite(spriteIndex));
@@ -3537,8 +3538,11 @@ public class InitUpdate extends Scene {
 
                 }
         }
-        if (KeyListener.isKeyPressed(GLFW_KEY_UP)) {
-            knightidle.transform.position.y += speed*dt;
+        if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
+            if (knightidle.onGround){
+            knightidle.transform.position.y += 6500*dt;
+            knightidle.onGround = false;
+            }
             if (camera.position.y<2400 && knightidle.transform.position.y < 2600 && knightidle.transform.position.y > 50){
                 camera.position.y = knightidle.transform.position.y-150;
 
@@ -3564,9 +3568,10 @@ public class InitUpdate extends Scene {
             go.update(dt);
             if (!go.getIsPlayer() && !go.getIsBackground()){
                 if (Bounds.checkCollision(go, knightidle)){
-//                    Bounds.resolveCollision(go.getComponent(Bounds.class), knightidle);
+                    BoxBounds.resolveCollision(go.getComponent(Bounds.class), knightidle);
                 }
             }
+
         }
 
         this.renderer.render();

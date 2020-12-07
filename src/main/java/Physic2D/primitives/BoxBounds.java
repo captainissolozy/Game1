@@ -51,15 +51,16 @@ public class BoxBounds extends Bounds{
 
         if (overlapX >= overlabY){
             if (dy>0){
+                player.transform.position.y = gameObject.transform.position.y - playerBounds.getHeight();
+            }else if(dy<0){
+                player.onGround = true;
                 player.transform.position.y = gameObject.transform.position.y + playerBounds.getHeight();
-            }else{
-                System.out.println("You die");
             }
         }else {
-            if (dx<0 && dy <=0.3){
-                player.transform.position.y = gameObject.transform.position.y - playerBounds.getHeight();
-            }else {
-                System.out.println("You die!");
+            if (dx<0){
+                player.transform.position.x = gameObject.transform.position.x + playerBounds.getWidth();
+            }else if (dx>0){
+                player.transform.position.x = gameObject.transform.position.x - playerBounds.getWidth();
             }
         }
     }
