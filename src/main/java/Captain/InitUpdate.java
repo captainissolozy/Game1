@@ -104,9 +104,13 @@ public class InitUpdate extends Scene {
 //        obj41_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(30)));
 //        this.addGameObjectToScene(obj41_skyblock);
 
-        GameObject obj42_skyblock = new GameObject("Object 42 sky", new Transform(new Vector2f(300, 620), new Vector2f(48, 48)));
+        GameObject obj42_skyblock = new GameObject("Object 42 sky", new Transform(new Vector2f(270, 620), new Vector2f(48, 48)));
         obj42_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(30)));
         this.addGameObjectToScene(obj42_skyblock);
+
+        GameObject obj42_skyblock_ed = new GameObject("Object 42 sky", new Transform(new Vector2f(350, 670), new Vector2f(48, 48)));
+        obj42_skyblock_ed.addComponent(new SpriteRenderer(sprites_forest.getSprite(30)));
+        this.addGameObjectToScene(obj42_skyblock_ed);
 
 //        GameObject obj43_skyblock = new GameObject("Object 43 sky", new Transform(new Vector2f(448, 650), new Vector2f(48, 48)));
 //        obj43_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
@@ -3552,7 +3556,7 @@ public class InitUpdate extends Scene {
         this.addGameObjectToScene(obj6_skyblock_ed);
 
         //Obj knight
-        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 155), new Vector2f(50, 50)), true, false);
+        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 2000), new Vector2f(50, 50)), true, false);
         knightidle.addComponent(new SpriteRenderer(kidlesheet.getSprite(0)));
         this.addGameObjectToScene(knightidle);
         playerBounds = new BoxBounds(new Vector2f(50,50));
@@ -3696,6 +3700,24 @@ public class InitUpdate extends Scene {
 
             }else{
                 camera.position.x += 0;
+
+            }
+        } else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
+            speedXr = 70;
+            speedXl += 3f;
+            if (speedXl >=300f){
+                speedXl = 300f;
+            }
+            if (!isCollideL) {
+                knightidle.transform.position.y -= speedXl * dt;
+            }else {
+                speedXl -=10f;
+            }
+            if (camera.position.y > -250 && knightidle.transform.position.y < 648 && knightidle.transform.position.y > 50){
+                camera.position.y = knightidle.transform.position.y-300;
+
+            }else{
+                camera.position.y += 0;
 
             }
         }else{
