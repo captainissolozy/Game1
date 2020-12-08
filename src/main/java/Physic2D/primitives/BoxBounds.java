@@ -1,12 +1,14 @@
 package Physic2D.primitives;
 
 import Captain.GameObject;
+import Captain.InitUpdate;
 import Captain.KeyListener;
 import org.joml.Vector2f;
 
 public class BoxBounds extends Bounds{
     public float width, height, halfWidth, halfHeight;
     public Vector2f vec, center= new Vector2f();
+    public InitUpdate init = new InitUpdate();
 
     public BoxBounds(Vector2f vec){
         this.width = vec.x;
@@ -47,9 +49,9 @@ public class BoxBounds extends Bounds{
         float combineHalfHeights = playerBounds.halfHeight+this.halfHeight;
 
         float overlapX = combineHalfWidths-Math.abs(dx);
-        float overlabY = combineHalfHeights-Math.abs(dy);
+        float overlapY = combineHalfHeights-Math.abs(dy);
 
-        if (overlapX >= overlabY){
+        if (overlapX >= overlapY){
             if (dy>0){
                 player.transform.position.y = gameObject.transform.position.y - playerBounds.getHeight();
             }else if(dy<0){
@@ -58,9 +60,12 @@ public class BoxBounds extends Bounds{
             }
         }else {
             if (dx<0){
-                player.transform.position.x = gameObject.transform.position.x + playerBounds.getWidth();
+                player.transform.position.x = gameObject.transform.position.x + playerBounds.getWidth()-10;
+                init.setisCollidel(true);
             }else if (dx>0){
-                player.transform.position.x = gameObject.transform.position.x - playerBounds.getWidth();
+                player.transform.position.x = gameObject.transform.position.x - playerBounds.getWidth()+6;
+                init.setisCollider(true);
+
             }
         }
     }

@@ -3505,10 +3505,19 @@ public class InitUpdate extends Scene {
     private int spriteIndex = 0;
     private float spriteFlipTime = 0.14f;
     private float spriteFlipTimeLeft = 0.0f;
-    private float speed = 200f, gravity=100f;
+    private float speed = 200f, gravity=100f, speedXl=0,speedXr=0, speedY=0;
+    private boolean isCollideR = false, isCollideL = false;
+
+    public void setisCollider(boolean collideR){
+        this.isCollideR = collideR;
+    }
+    public void setisCollidel(boolean collideL){
+        this.isCollideL = collideL;
+    }
 
     @Override
     public void update(float dt) {
+
             knightidle.transform.position.y -= gravity*dt;
             spriteFlipTimeLeft -= dt;
             if (spriteFlipTimeLeft <= 0) {
@@ -3521,7 +3530,16 @@ public class InitUpdate extends Scene {
             }
 
         if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) { //This reference by grids (32 grids), No! it's not a pixel!...
-            knightidle.transform.position.x += speed*dt;
+            speedXl = 0;
+            speedXr += 1f;
+            if (speedXr >=180f){
+                speedXr = 180f;
+            }
+            if (!isCollideR) {
+                knightidle.transform.position.x += speedXr * dt;
+            }else {
+                speedXr =0;
+            }
             if (camera.position.x < 360 && knightidle.transform.position.x < 648 && knightidle.transform.position.x > 50){
                 camera.position.x = knightidle.transform.position.x-300;
             }else{
@@ -3529,7 +3547,16 @@ public class InitUpdate extends Scene {
 
                 }
         } else if (KeyListener.isKeyPressed(GLFW_KEY_LEFT)) {
-            knightidle.transform.position.x -= speed*dt;
+            speedXr = 0;
+            speedXl += 1f;
+            if (speedXl >=180f){
+                speedXl = 180f;
+            }
+            if (!isCollideL) {
+                knightidle.transform.position.x -= speedXl * dt;
+            }else {
+               speedXl =0;
+            }
             if (camera.position.x > -250 && knightidle.transform.position.x < 648 && knightidle.transform.position.x > 50){
                 camera.position.x = knightidle.transform.position.x-300;
 
@@ -3537,6 +3564,10 @@ public class InitUpdate extends Scene {
                 camera.position.x += 0;
 
                 }
+        }else{
+                speedXl = 0f;
+                speedXr = 0f;
+
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
             if (knightidle.onGround){
@@ -3576,4 +3607,6 @@ public class InitUpdate extends Scene {
 
         this.renderer.render();
     }
+
+
 }
