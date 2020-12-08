@@ -8,7 +8,7 @@ public class GameObject {
     private String name;
     private List<Component> components;
     public Transform transform;
-    private boolean isPlayer=false;
+    private boolean isPlayer=false, isWinningBlock=false;
     private boolean isBackground=false;
     private boolean isHalfblock;
     public boolean onGround;
@@ -39,6 +39,15 @@ public class GameObject {
         this.isPlayer = isPlayer;
         this.isBackground = isBackground;
         this.isHalfblock = isHalfblock;
+    }
+    public GameObject(String name, Transform transform, boolean isPlayer, boolean isBackground, boolean isHalfblock, boolean isWinningBlock){
+        this.name = name;
+        this.components = new ArrayList<>();
+        this.transform = transform;
+        this.isPlayer = isPlayer;
+        this.isBackground = isBackground;
+        this.isHalfblock = isHalfblock;
+        this.isWinningBlock = isWinningBlock;
     }
     public <T extends Component> T getComponent(Class<T> componentClass) {
         for (Component c : components) {
@@ -102,5 +111,11 @@ public class GameObject {
 
     public void setWin(boolean win) {
         isWin = win;
+    }
+    public boolean getWin(){
+        return isWin;
+    }
+    public boolean getWinning(){
+        return isWinningBlock;
     }
 }

@@ -15,9 +15,10 @@ public class InitUpdate extends Scene {
 
     }
 
-    private Spritesheet sprites0,sprites_town,background_big ,kidlesheet ,grass ,background_3 , kwalksheet, sprites_forest, maincharectersheet, background_2, stone, treeset, block167, tree3, tree_dry, tree_dry2, tree_dry3, tree_dry4;
+    private Spritesheet sprites0,sprites_town,background_big ,kidlesheet ,grass ,background_3 , kwalksheet, sprites_forest, maincharectersheet, background_2, stone, treeset, block167, tree3, tree_dry, tree_dry2, tree_dry3, tree_dry4, wine;
     private GameObject knightidle, knightwalk, maincharecter;
     public BoxBounds playerBounds;
+    private int sizex, sizey;
 
     @Override
     public void init() {
@@ -30,6 +31,7 @@ public class InitUpdate extends Scene {
         background_3 = AssetPool.getSpritesheet("assets/images/Background-3.jfif");
         background_big = AssetPool.getSpritesheet("assets/images/bg-big.png");
         sprites_town = AssetPool.getSpritesheet("assets/images/Tileset_town.png");
+
         sprites_forest = AssetPool.getSpritesheet("assets/images/Tileset_forest.png");
         stone = AssetPool.getSpritesheet("assets/images/stone.png");
         kidlesheet = AssetPool.getSpritesheet("assets/images/Slime_Walk.png");
@@ -40,7 +42,6 @@ public class InitUpdate extends Scene {
         tree_dry3 = AssetPool.getSpritesheet("assets/images/object/Trees/3.png");
         tree_dry4 = AssetPool.getSpritesheet("assets/images/object/Ridges/3.png");
         grass = AssetPool.getSpritesheet("assets/images/grass_mo.png");
-
 
         //Obj background
         GameObject back1 = new GameObject("Object 1", new Transform(new Vector2f(-250, 0), new Vector2f(1920, 3240)), false, true);
@@ -3511,7 +3512,7 @@ public class InitUpdate extends Scene {
         obj27_ev.addComponent(new SpriteRenderer(sprites_forest.getSprite(62)));
         this.addGameObjectToScene(obj27_ev);
 
-        GameObject obj29_ev = new GameObject("Object sky", new Transform(new Vector2f(674, 2868), new Vector2f(48, 48)), false, true);
+        GameObject obj29_ev = new GameObject("Object sky", new Transform(new Vector2f(674, 2868), new Vector2f(48, 48)), false, false, false, true);
         obj29_ev.addComponent(new SpriteRenderer(stone.getSprite(0)));
         this.addGameObjectToScene(obj29_ev);
 
@@ -3552,11 +3553,13 @@ public class InitUpdate extends Scene {
         this.addGameObjectToScene(obj6_skyblock_ed);
 
         //Obj knight
-        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 155), new Vector2f(50, 50)), true, false);
+        sizex = 50; sizey = 50;
+        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 157), new Vector2f(sizex, sizey)), true, false);
         knightidle.addComponent(new SpriteRenderer(kidlesheet.getSprite(0)));
         this.addGameObjectToScene(knightidle);
-        playerBounds = new BoxBounds(new Vector2f(50,50));
+        playerBounds = new BoxBounds(new Vector2f(sizex,sizey));
         knightidle.addComponent(playerBounds);
+
 
         for (GameObject g : gameObjects){
             if (!g.getIsPlayer() && !g.getIsBackground()){
@@ -3617,6 +3620,7 @@ public class InitUpdate extends Scene {
         AssetPool.addSpritesheet("assets/images/stone.png",
                 new Spritesheet(AssetPool.getTexture("assets/images/stone.png"),
                         63, 59, 1, 0));
+
     }
 
     private int spriteIndex = 0;
@@ -3704,7 +3708,9 @@ public class InitUpdate extends Scene {
 
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
-            speedY += 15f;
+
+            speedY += 10f;
+
             System.out.println(speedY);
 
             if (knightidle.onGround){
@@ -3747,17 +3753,22 @@ public class InitUpdate extends Scene {
             if (!go.getIsPlayer() && !go.getIsBackground()){
                 if (Bounds.checkCollision(go, knightidle)){
                     BoxBounds.resolveCollision(go.getComponent(Bounds.class), knightidle);
-
+                    if (go.getWinning()){
+                        knightidle.setWin(true);
+                    }
                 }
             }
 
         }
-        if (knightidle.getDeath()){
+        if (knightidle.getWin()){
             camera.position.x = knightidle.transform.position.x-230;
             knightidle.transform.position.x = -52;
             knightidle.transform.position.y = 160;
+            System.out.println(sizex);
             if (KeyListener.isKeyPressed(GLFW_KEY_ENTER)){
-                knightidle.setDeath(false);
+                sizex -= 3;
+                sizey -=3;
+                knightidle.setWin(false);
             }
         }
 

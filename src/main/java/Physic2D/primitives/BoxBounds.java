@@ -67,21 +67,15 @@ public class BoxBounds extends Bounds{
         }else {
             if (dx<0){
                 player.transform.position.x = gameObject.transform.position.x + playerBounds.getWidth()-10;
-
-                System.out.println(speedl);
-                if (speedl>=70){
-                    player.setDeath(false);
-                }
                 init.setisCollidel(true);
             }else if (dx>0){
-                player.transform.position.x = gameObject.transform.position.x - playerBounds.getWidth()+9;
+                player.transform.position.x = gameObject.transform.position.x - playerBounds.getWidth()+8;
                 init.setisCollider(true);
-                if (init.getSpeedXr()>=70){
-                    player.setDeath(true);
+
                 }
             }
         }
-    }
+
     @Override
     public float getWidth() {
         return width;
