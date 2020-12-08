@@ -37,6 +37,8 @@ public class BoxBounds extends Bounds{
             return false;
     }
 
+
+
     public void resolveCollision(GameObject player){
         BoxBounds playerBounds = player.getComponent(BoxBounds.class);
         playerBounds.calculateCenter();

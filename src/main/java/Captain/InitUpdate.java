@@ -68,7 +68,7 @@ public class InitUpdate extends Scene {
 //        obj4_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
 //        this.addGameObjectToScene(obj4_skyblock);
 
-        GameObject obj6_skyblock = new GameObject("Object 6 sky", new Transform(new Vector2f(830, 400), new Vector2f(48, 48)));
+        GameObject obj6_skyblock = new GameObject("Object 6 sky", new Transform(new Vector2f(830, 400), new Vector2f(48, 48)), false, false, true);
         obj6_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj6_skyblock);
 
@@ -76,7 +76,7 @@ public class InitUpdate extends Scene {
 //        obj7_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
 //        this.addGameObjectToScene(obj7_skyblock);
 
-        GameObject obj8_skyblock = new GameObject("Object 8 sky", new Transform(new Vector2f(610, 460), new Vector2f(48, 48)));
+        GameObject obj8_skyblock = new GameObject("Object 8 sky", new Transform(new Vector2f(610, 460), new Vector2f(48, 48)), false, false, true);
         obj8_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj8_skyblock);
 
@@ -96,7 +96,7 @@ public class InitUpdate extends Scene {
 //        obj41_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(30)));
 //        this.addGameObjectToScene(obj41_skyblock);
 
-        GameObject obj42_skyblock = new GameObject("Object 42 sky", new Transform(new Vector2f(300, 620), new Vector2f(48, 48)));
+        GameObject obj42_skyblock = new GameObject("Object 42 sky", new Transform(new Vector2f(300, 620), new Vector2f(48, 48)), false, false, true);
         obj42_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj42_skyblock);
 
@@ -188,11 +188,11 @@ public class InitUpdate extends Scene {
 //        obj31_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(58)));
 //        this.addGameObjectToScene(obj31_skyblock);
 
-        GameObject obj39_skyblock = new GameObject("Object 39 sky", new Transform(new Vector2f(990, 610), new Vector2f(48, 48)));
+        GameObject obj39_skyblock = new GameObject("Object 39 sky", new Transform(new Vector2f(990, 610), new Vector2f(48, 48)), false, false, true);
         obj39_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj39_skyblock);
 
-        GameObject obj1_skyblock_ed = new GameObject("Object 39 sky", new Transform(new Vector2f(1350, 570), new Vector2f(48, 48)));
+        GameObject obj1_skyblock_ed = new GameObject("Object 39 sky", new Transform(new Vector2f(1350, 570), new Vector2f(48, 48)), false, false, true);
         obj1_skyblock_ed.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj1_skyblock_ed);
 
@@ -220,7 +220,7 @@ public class InitUpdate extends Scene {
         obj35_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(31)));
         this.addGameObjectToScene(obj35_skyblock);
 
-        GameObject obj2_skyblock_ed = new GameObject("Object 35 sky", new Transform(new Vector2f(1370, 750), new Vector2f(48, 48)));
+        GameObject obj2_skyblock_ed = new GameObject("Object 35 sky", new Transform(new Vector2f(1370, 750), new Vector2f(48, 48)), false, false, true);
         obj2_skyblock_ed.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj2_skyblock_ed);
 
@@ -236,7 +236,7 @@ public class InitUpdate extends Scene {
         obj38_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(48)));
         this.addGameObjectToScene(obj38_skyblock);
 
-        GameObject obj203_skyblock = new GameObject("Object 38 sky", new Transform(new Vector2f(1390, 920), new Vector2f(48, 48)));
+        GameObject obj203_skyblock = new GameObject("Object 38 sky", new Transform(new Vector2f(1390, 920), new Vector2f(48, 48)), false, false, true);
         obj203_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj203_skyblock);
 
@@ -260,7 +260,7 @@ public class InitUpdate extends Scene {
 //        obj208_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
 //        this.addGameObjectToScene(obj208_skyblock);
 
-        GameObject obj209_skyblock = new GameObject("Object sky", new Transform(new Vector2f(1450, 1000), new Vector2f(48, 48)));
+        GameObject obj209_skyblock = new GameObject("Object sky", new Transform(new Vector2f(1450, 1000), new Vector2f(48, 48)), false, false, true);
         obj209_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj209_skyblock);
 
@@ -1617,15 +1617,15 @@ public class InitUpdate extends Scene {
         obj458_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(30)));
         this.addGameObjectToScene(obj458_sky);
 
-        GameObject obj459_sky = new GameObject("Object sky", new Transform(new Vector2f(1390, 2380), new Vector2f(48, 48)));
+        GameObject obj459_sky = new GameObject("Object sky", new Transform(new Vector2f(1390, 2380), new Vector2f(48, 48)), false, false, true);
         obj459_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj459_sky);
 
-        GameObject obj460_sky = new GameObject("Object sky", new Transform(new Vector2f(660, 2320), new Vector2f(48, 48)));
+        GameObject obj460_sky = new GameObject("Object sky", new Transform(new Vector2f(660, 2320), new Vector2f(48, 48)), false, false, true);
         obj460_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj460_sky);
 
-        GameObject obj461_sky = new GameObject("Object sky", new Transform(new Vector2f(570, 2340), new Vector2f(48, 48)));
+        GameObject obj461_sky = new GameObject("Object sky", new Transform(new Vector2f(570, 2340), new Vector2f(48, 48)), false, false, true);
         obj461_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj461_sky);
 
@@ -1673,7 +1673,7 @@ public class InitUpdate extends Scene {
         obj472_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(33)));
         this.addGameObjectToScene(obj472_sky);
 
-        GameObject obj473_sky = new GameObject("Object sky", new Transform(new Vector2f(-4, 2500), new Vector2f(48, 48)));
+        GameObject obj473_sky = new GameObject("Object sky", new Transform(new Vector2f(-4, 2500), new Vector2f(48, 48)), false, false, true);
         obj473_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj473_sky);
 
@@ -1685,7 +1685,7 @@ public class InitUpdate extends Scene {
         obj475_sky.addComponent(new SpriteRenderer(treeset.getSprite(1)));
         this.addGameObjectToScene(obj475_sky);
 
-        GameObject obj476_sky = new GameObject("Object sky", new Transform(new Vector2f(-90, 2630), new Vector2f(48, 48)));
+        GameObject obj476_sky = new GameObject("Object sky", new Transform(new Vector2f(-90, 2630), new Vector2f(48, 48)), false, false, true);
         obj476_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj476_sky);
 
@@ -1693,7 +1693,7 @@ public class InitUpdate extends Scene {
 //        obj477_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
 //        this.addGameObjectToScene(obj477_sky);
 
-        GameObject obj478_sky = new GameObject("Object sky", new Transform(new Vector2f(0, 2660), new Vector2f(48, 48)));
+        GameObject obj478_sky = new GameObject("Object sky", new Transform(new Vector2f(0, 2660), new Vector2f(48, 48)), false, false, true);
         obj478_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj478_sky);
 
@@ -1701,11 +1701,11 @@ public class InitUpdate extends Scene {
 //        obj479_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
 //        this.addGameObjectToScene(obj479_sky);
 
-        GameObject obj480_sky = new GameObject("Object sky", new Transform(new Vector2f(-60, 2730), new Vector2f(48, 48)));
+        GameObject obj480_sky = new GameObject("Object sky", new Transform(new Vector2f(-60, 2730), new Vector2f(48, 48)), false, false, true);
         obj480_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj480_sky);
 
-        GameObject obj481_sky = new GameObject("Object sky", new Transform(new Vector2f(96, 2780), new Vector2f(48, 48)));
+        GameObject obj481_sky = new GameObject("Object sky", new Transform(new Vector2f(96, 2780), new Vector2f(48, 48)), false, false, true);
         obj481_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj481_sky);
 
@@ -1761,7 +1761,7 @@ public class InitUpdate extends Scene {
         obj493_sky.addComponent(new SpriteRenderer(treeset.getSprite(2)));
         this.addGameObjectToScene(obj493_sky);
 
-        GameObject obj494_sky = new GameObject("Object sky", new Transform(new Vector2f(410, 2830), new Vector2f(48, 48)));
+        GameObject obj494_sky = new GameObject("Object sky", new Transform(new Vector2f(410, 2830), new Vector2f(48, 48)), false, false, true);
         obj494_sky.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj494_sky);
 
@@ -3382,11 +3382,11 @@ public class InitUpdate extends Scene {
         obj38_2.addComponent(new SpriteRenderer(sprites_forest.getSprite(11)));
         this.addGameObjectToScene(obj38_2);
 
-        GameObject obj5_skyblock = new GameObject("Object 5 sky", new Transform(new Vector2f(650, 320), new Vector2f(48, 48)));
+        GameObject obj5_skyblock = new GameObject("Object 5 sky", new Transform(new Vector2f(650, 320), new Vector2f(48, 48)), false, false, true);
         obj5_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
         this.addGameObjectToScene(obj5_skyblock);
 
-        //Obj environment -- ของตกเเต่ง --
+        //Obj environment
         GameObject obj1_ev = new GameObject("Object 1 ev", new Transform(new Vector2f(290, 148), new Vector2f(48, 48)), false, true);
         obj1_ev.addComponent(new SpriteRenderer(sprites_forest.getSprite(62)));
         this.addGameObjectToScene(obj1_ev);
@@ -3544,6 +3544,8 @@ public class InitUpdate extends Scene {
             }
         }
 
+
+
     }
 
     private void loadResources() {
@@ -3602,7 +3604,7 @@ public class InitUpdate extends Scene {
     private int spriteIndex = 0;
     private float spriteFlipTime = 0.14f;
     private float spriteFlipTimeLeft = 0.0f;
-    private float speed = 100f, gravity=100f, speedXl=0,speedXr=0, speedY=0f;
+    private float speed = 100f, gravity=100f, speedXl=70,speedXr=70, speedY=0f;
     private boolean isCollideR = false, isCollideL = false;
 
     public void setisCollider(boolean collideR){
@@ -3617,10 +3619,10 @@ public class InitUpdate extends Scene {
             if (!knightidle.onGround){
                 speedY = 0;
                 knightidle.transform.position.y -= gravity*dt;
-                gravity += 2f;
+                gravity +=10f;
 
-                if (gravity >=700){
-                        gravity = 700f;
+                if (gravity >=1700){
+                        gravity = 1700f;
                     }
             }else {gravity = 100f;}
 
@@ -3635,15 +3637,15 @@ public class InitUpdate extends Scene {
             }
 
         if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) { //This reference by grids (32 grids), No! it's not a pixel!...
-            speedXl = 0;
-            speedXr += 1f;
-            if (speedXr >=180f){
-                speedXr = 180f;
+            speedXl = 70;
+            speedXr += 3f;
+            if (speedXr >=300f){
+                speedXr = 300f;
             }
             if (!isCollideR) {
                 knightidle.transform.position.x += speedXr * dt;
             }else {
-                speedXr =0;
+                speedXr =70;
             }
             if (camera.position.x < 360 && knightidle.transform.position.x < 648 && knightidle.transform.position.x > 50){
                 camera.position.x = knightidle.transform.position.x-300;
@@ -3652,15 +3654,15 @@ public class InitUpdate extends Scene {
 
                 }
         } else if (KeyListener.isKeyPressed(GLFW_KEY_LEFT)) {
-            speedXr = 0;
-            speedXl += 1f;
-            if (speedXl >=180f){
-                speedXl = 180f;
+            speedXr = 70;
+            speedXl += 3f;
+            if (speedXl >=300f){
+                speedXl = 300f;
             }
             if (!isCollideL) {
                 knightidle.transform.position.x -= speedXl * dt;
             }else {
-               speedXl =0;
+               speedXl =70;
             }
             if (camera.position.x > -250 && knightidle.transform.position.x < 648 && knightidle.transform.position.x > 50){
                 camera.position.x = knightidle.transform.position.x-300;
@@ -3670,16 +3672,16 @@ public class InitUpdate extends Scene {
 
                 }
         }else{
-                speedXl = 0f;
-                speedXr = 0f;
+                speedXl = 70f;
+                speedXr = 70f;
 
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
-            speedY += 5f;
+            speedY += 10f;
             System.out.println(speedY);
 
             if (knightidle.onGround){
-            knightidle.transform.position.y += (200+speedY)*dt;
+            knightidle.transform.position.y += (500+speedY)*dt;
             if (speedY>=200){
                     System.out.println(speedY);
                     knightidle.onGround = false;
@@ -3693,7 +3695,7 @@ public class InitUpdate extends Scene {
             knightidle.onGround = false;
 
 
-        }if (knightidle.transform.position.y < 350){
+        }if (knightidle.transform.position.y < 550){
             camera.position.y = 0;
         }
         if (knightidle.transform.position.y >= 350&& knightidle.transform.position.y<900){
@@ -3718,6 +3720,7 @@ public class InitUpdate extends Scene {
             if (!go.getIsPlayer() && !go.getIsBackground()){
                 if (Bounds.checkCollision(go, knightidle)){
                     BoxBounds.resolveCollision(go.getComponent(Bounds.class), knightidle);
+
                 }
             }
 

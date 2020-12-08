@@ -231,7 +231,7 @@ public class RenderBatch {
     }
 
     public boolean hasTextureRoom() {
-        return this.textures.size() < 8;
+        return this.textures.size() < 12;
     }
 
     public boolean hasTexture(Texture tex) {

@@ -89,6 +89,10 @@ public class GameObject {
         return isBackground;
     }
 
+    public boolean isHalfblock() {
+        return isHalfblock;
+    }
+
     public void setDeath(boolean death) {
         isDeath = death;
     }

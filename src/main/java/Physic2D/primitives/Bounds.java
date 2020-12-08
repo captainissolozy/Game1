@@ -11,6 +11,7 @@ public abstract class Bounds extends Component {
         return BoxBounds.checkCollision(b1, b2);
     }
 
+
     public static void resolveCollision(Bounds b, GameObject plr){
         BoxBounds box = (BoxBounds) b;
         box.resolveCollision(plr);
