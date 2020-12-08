@@ -15,9 +15,10 @@ public class InitUpdate extends Scene {
 
     }
 
-    private Spritesheet sprites0,sprites_town,background_big ,kidlesheet ,grass ,background_3 , kwalksheet, sprites_forest, maincharectersheet, background_2, stone, treeset, block167, tree3, tree_dry, tree_dry2, tree_dry3, tree_dry4;
+   private Spritesheet sprites0,sprites_town,background_big ,kidlesheet ,grass ,background_3 , kwalksheet, sprites_forest, maincharectersheet, background_2, stone, treeset, block167, tree3, tree_dry, tree_dry2, tree_dry3, tree_dry4, wine;
     private GameObject knightidle, knightwalk, maincharecter;
     public BoxBounds playerBounds;
+    private int sizex, sizey;
 
     @Override
     public void init() {
@@ -3777,12 +3778,15 @@ public class InitUpdate extends Scene {
             }
 
         }
-        if (knightidle.getDeath()){
+        if (knightidle.getWin()){
             camera.position.x = knightidle.transform.position.x-230;
             knightidle.transform.position.x = -52;
             knightidle.transform.position.y = 160;
+            System.out.println(sizex);
             if (KeyListener.isKeyPressed(GLFW_KEY_ENTER)){
-                knightidle.setDeath(false);
+                sizex -= 3;
+                sizey -=3;
+                knightidle.setWin(false);
             }
         }
 
