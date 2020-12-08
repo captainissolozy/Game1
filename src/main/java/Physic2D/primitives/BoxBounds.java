@@ -31,7 +31,7 @@ public class BoxBounds extends Bounds{
 
     public static boolean checkCollision(GameObject b1, GameObject b2){
         if (b1.transform.position.x+b1.transform.scale.x-9 >= b2.transform.position.x && b2.transform.position.x+b2.transform.scale.x >= b1.transform.position.x+9
-                && b1.transform.position.y+2+b1.transform.scale.y >= b2.transform.position.y && b2.transform.position.y+b2.transform.scale.y >= b1.transform.position.y){
+                && b1.transform.position.y+1+b1.transform.scale.y >= b2.transform.position.y && b2.transform.position.y-20+b2.transform.scale.y >= b1.transform.position.y){
             return true;
         }else
             return false;
@@ -52,7 +52,7 @@ public class BoxBounds extends Bounds{
 
         if (overlapX >= overlapY){
             if (dy>0){
-                player.transform.position.y = gameObject.transform.position.y - playerBounds.getHeight();
+                player.transform.position.y = gameObject.transform.position.y - playerBounds.getHeight()+20;
             }else if(dy<0){
                 player.onGround = true;
                 player.transform.position.y = gameObject.transform.position.y + playerBounds.getHeight();
@@ -62,7 +62,7 @@ public class BoxBounds extends Bounds{
                 player.transform.position.x = gameObject.transform.position.x + playerBounds.getWidth()-10;
                 init.setisCollidel(true);
             }else if (dx>0){
-                player.transform.position.x = gameObject.transform.position.x - playerBounds.getWidth()+6;
+                player.transform.position.x = gameObject.transform.position.x - playerBounds.getWidth()+9;
                 init.setisCollider(true);
 
             }

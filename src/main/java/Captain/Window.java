@@ -1,6 +1,5 @@
 package Captain;
 
-import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -24,7 +23,7 @@ public class Window {
     private Window() {
         this.width = 1920;
         this.height = 1080;
-        this.title = "Mario";
+        this.title = "Typical";
         r = 0;
         b = 0;
         g = 0;
@@ -62,7 +61,7 @@ public class Window {
     }
 
     public void run() {
-        System.out.println("Hello LWJGL " + Version.getVersion() + "!");
+
 
         init();
         loop();

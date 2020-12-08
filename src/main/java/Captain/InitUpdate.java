@@ -2748,7 +2748,7 @@ public class InitUpdate extends Scene {
         tree_10.addComponent(new SpriteRenderer(treeset.getSprite(0)));
         this.addGameObjectToScene(tree_10);
 
-        GameObject obj67 = new GameObject("Object 67 crave", new Transform(new Vector2f(1340, 148), new Vector2f(48, 48)), false, true);
+        GameObject obj67 = new GameObject("Object 67 crave", new Transform(new Vector2f(1340, 148), new Vector2f(48, 48)));
         obj67.addComponent(new SpriteRenderer(sprites_forest.getSprite(2)));
         this.addGameObjectToScene(obj67);
 
@@ -2804,7 +2804,7 @@ public class InitUpdate extends Scene {
         obj54.addComponent(new SpriteRenderer(sprites_forest.getSprite(24)));
         this.addGameObjectToScene(obj54);
 
-        GameObject tree_3 = new GameObject("tree_dry3", new Transform(new Vector2f(616, 290), new Vector2f(199, 199)));
+        GameObject tree_3 = new GameObject("tree_dry3", new Transform(new Vector2f(616, 290), new Vector2f(199, 199)), false, true);
         tree_3.addComponent(new SpriteRenderer(treeset.getSprite(2)));
         this.addGameObjectToScene(tree_3);
 
@@ -3584,24 +3584,35 @@ public class InitUpdate extends Scene {
             if (knightidle.onGround){
             knightidle.transform.position.y += (200+speedY)*dt;
             if (speedY>=200){
-                System.out.println(speedY);
-                knightidle.onGround = false;
-                speedY = 200f;
-            }
-            }
-
-            if (camera.position.y<2400 && knightidle.transform.position.y < 2600 && knightidle.transform.position.y > 50){
-
-
-            }else{
-                camera.position.y += 0;
-
+                    System.out.println(speedY);
+                    knightidle.onGround = false;
+                    speedY = 200f;
                 }
+            }
+
+
         } else if (!KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
 
             knightidle.onGround = false;
 
 
+        }if (knightidle.transform.position.y < 350){
+            camera.position.y = 0;
+        }
+        if (knightidle.transform.position.y >= 350&& knightidle.transform.position.y<900){
+            camera.position.y = 350;
+
+        }if (knightidle.transform.position.y >= 930 && knightidle.transform.position.y<1400){
+            camera.position.y = 900;
+
+        }if (knightidle.transform.position.y >= 1400 && knightidle.transform.position.y<1900){
+            camera.position.y = 1400;
+
+        }if (knightidle.transform.position.y >= 1900 && knightidle.transform.position.y<2400){
+            camera.position.y = 1900;
+
+        }if (knightidle.transform.position.y >= 2400){
+            camera.position.y = 2400;
         }
 
 

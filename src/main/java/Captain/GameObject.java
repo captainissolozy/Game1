@@ -1,7 +1,5 @@
 package Captain;
 
-import util.Constants;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +10,9 @@ public class GameObject {
     public Transform transform;
     private boolean isPlayer=false;
     private boolean isBackground=false;
+    private boolean isHalfblock;
     public boolean onGround;
-    private float velocityY;
+    private boolean isDeath = false, isWin=false;
 
     public GameObject(String name) {
         this.name = name;
@@ -32,6 +31,14 @@ public class GameObject {
         this.transform = transform;
         this.isPlayer = isPlayer;
         this.isBackground = isBackground;
+    }
+    public GameObject(String name, Transform transform, boolean isPlayer, boolean isBackground, boolean isHalfblock){
+        this.name = name;
+        this.components = new ArrayList<>();
+        this.transform = transform;
+        this.isPlayer = isPlayer;
+        this.isBackground = isBackground;
+        this.isHalfblock = isHalfblock;
     }
     public <T extends Component> T getComponent(Class<T> componentClass) {
         for (Component c : components) {
@@ -69,9 +76,6 @@ public class GameObject {
         }
     }
 
-    private void addJumpForce(){
-        this.velocityY = Constants.JUMP_FORCE;
-    }
 
     public void start() {
         for (int i=0; i < components.size(); i++) {
@@ -83,5 +87,13 @@ public class GameObject {
     }
     public boolean getIsBackground(){
         return isBackground;
+    }
+
+    public void setDeath(boolean death) {
+        isDeath = death;
+    }
+
+    public void setWin(boolean win) {
+        isWin = win;
     }
 }
