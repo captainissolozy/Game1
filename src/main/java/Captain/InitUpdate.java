@@ -30,7 +30,6 @@ public class InitUpdate extends Scene {
         background_3 = AssetPool.getSpritesheet("assets/images/Background-3.jfif");
         background_big = AssetPool.getSpritesheet("assets/images/bg-big.png");
         sprites_town = AssetPool.getSpritesheet("assets/images/Tileset_town.png");
-        block167 = AssetPool.getSpritesheet("assets/images/167.png");
         sprites_forest = AssetPool.getSpritesheet("assets/images/Tileset_forest.png");
         stone = AssetPool.getSpritesheet("assets/images/stone.png");
         kidlesheet = AssetPool.getSpritesheet("assets/images/Slime_Walk.png");
@@ -69,13 +68,17 @@ public class InitUpdate extends Scene {
 //        obj4_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
 //        this.addGameObjectToScene(obj4_skyblock);
 
-        GameObject obj6_skyblock = new GameObject("Object 6 sky", new Transform(new Vector2f(100, 470), new Vector2f(48, 48)));
+        GameObject obj6_skyblock = new GameObject("Object 6 sky", new Transform(new Vector2f(180, 470), new Vector2f(48, 48)));
         obj6_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(30)));
         this.addGameObjectToScene(obj6_skyblock);
 
-        GameObject obj6_skyblock_ed = new GameObject("Object 6 sky", new Transform(new Vector2f(830, 350), new Vector2f(48, 48)));
-        obj6_skyblock_ed.addComponent(new SpriteRenderer(sprites_forest.getSprite(30)));
-        this.addGameObjectToScene(obj6_skyblock_ed);
+        GameObject obj7_skyblock_ed = new GameObject("Object 7 sky", new Transform(new Vector2f(60, 430), new Vector2f(48, 48)));
+        obj7_skyblock_ed.addComponent(new SpriteRenderer(sprites_forest.getSprite(30)));
+        this.addGameObjectToScene(obj7_skyblock_ed);
+
+        GameObject obj8_skyblock_ed = new GameObject("Object 8 sky", new Transform(new Vector2f(0, 500), new Vector2f(48, 48)));
+        obj8_skyblock_ed.addComponent(new SpriteRenderer(sprites_forest.getSprite(30)));
+        this.addGameObjectToScene(obj8_skyblock_ed);
 
 //        GameObject obj7_skyblock = new GameObject("Object 7 sky", new Transform(new Vector2f(520, 480), new Vector2f(48, 48)));
 //        obj7_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(38)));
@@ -3395,7 +3398,7 @@ public class InitUpdate extends Scene {
         obj38_2.addComponent(new SpriteRenderer(sprites_forest.getSprite(11)));
         this.addGameObjectToScene(obj38_2);
 
-        GameObject obj5_skyblock = new GameObject("Object 5 sky", new Transform(new Vector2f(650, 320), new Vector2f(48, 48)));
+        GameObject obj5_skyblock = new GameObject("Object 5 sky", new Transform(new Vector2f(810, 320), new Vector2f(48, 48)));
         obj5_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(30)));
         this.addGameObjectToScene(obj5_skyblock);
 
@@ -3544,6 +3547,10 @@ public class InitUpdate extends Scene {
         obj37_ev.addComponent(new SpriteRenderer(sprites_forest.getSprite(62)));
         this.addGameObjectToScene(obj37_ev);
 
+        GameObject obj6_skyblock_ed = new GameObject("Object 6 sky", new Transform(new Vector2f(730, 420), new Vector2f(48, 48)));
+        obj6_skyblock_ed.addComponent(new SpriteRenderer(sprites_forest.getSprite(30)));
+        this.addGameObjectToScene(obj6_skyblock_ed);
+
         //Obj knight
         knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 155), new Vector2f(50, 50)), true, false);
         knightidle.addComponent(new SpriteRenderer(kidlesheet.getSprite(0)));
@@ -3610,9 +3617,6 @@ public class InitUpdate extends Scene {
         AssetPool.addSpritesheet("assets/images/stone.png",
                 new Spritesheet(AssetPool.getTexture("assets/images/stone.png"),
                         63, 59, 1, 0));
-        AssetPool.addSpritesheet("assets/images/167.png",
-                new Spritesheet(AssetPool.getTexture("assets/images/167.png"),
-                        48, 13, 1, 0));
     }
 
     private int spriteIndex = 0;
@@ -3700,7 +3704,7 @@ public class InitUpdate extends Scene {
 
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
-            speedY += 10f;
+            speedY += 15f;
             System.out.println(speedY);
 
             if (knightidle.onGround){
@@ -3721,8 +3725,8 @@ public class InitUpdate extends Scene {
         }if (knightidle.transform.position.y < 550){
             camera.position.y = 0;
         }
-        if (knightidle.transform.position.y >= 350&& knightidle.transform.position.y<900){
-            camera.position.y = 350;
+        if (knightidle.transform.position.y >= 450&& knightidle.transform.position.y<900){
+            camera.position.y = 400;
 
         }if (knightidle.transform.position.y >= 930 && knightidle.transform.position.y<1400){
             camera.position.y = 900;
