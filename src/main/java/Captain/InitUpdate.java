@@ -3516,7 +3516,7 @@ public class InitUpdate extends Scene {
         obj27_ev.addComponent(new SpriteRenderer(sprites_forest.getSprite(62)));
         this.addGameObjectToScene(obj27_ev);
 
-        GameObject obj29_ev = new GameObject("Object sky", new Transform(new Vector2f(674, 2868), new Vector2f(48, 48)), false, true);
+        GameObject obj29_ev = new GameObject("Object sky", new Transform(new Vector2f(674, 2868), new Vector2f(48, 48)), false, false, false, true);
         obj29_ev.addComponent(new SpriteRenderer(stone.getSprite(0)));
         this.addGameObjectToScene(obj29_ev);
 
@@ -3557,7 +3557,7 @@ public class InitUpdate extends Scene {
         this.addGameObjectToScene(obj6_skyblock_ed);
 
         //Obj knight
-        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 2000), new Vector2f(50, 50)), true, false);
+        knightidle = new GameObject("knightc", new Transform(new Vector2f(-52, 157), new Vector2f(50, 50)), true, false);
         knightidle.addComponent(new SpriteRenderer(kidlesheet.getSprite(0)));
         this.addGameObjectToScene(knightidle);
         playerBounds = new BoxBounds(new Vector2f(50,50));
@@ -3773,7 +3773,9 @@ public class InitUpdate extends Scene {
             if (!go.getIsPlayer() && !go.getIsBackground()){
                 if (Bounds.checkCollision(go, knightidle)){
                     BoxBounds.resolveCollision(go.getComponent(Bounds.class), knightidle);
-
+                    if (go.getWinning()){
+                        knightidle.setWin(true);
+                    }
                 }
             }
 
