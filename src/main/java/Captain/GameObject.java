@@ -96,6 +96,9 @@ public class GameObject {
     public void setDeath(boolean death) {
         isDeath = death;
     }
+    public boolean getDeath(){
+        return isDeath;
+    }
 
     public void setWin(boolean win) {
         isWin = win;

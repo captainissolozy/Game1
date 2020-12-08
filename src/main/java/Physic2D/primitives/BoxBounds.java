@@ -5,10 +5,15 @@ import Captain.InitUpdate;
 import org.joml.Vector2f;
 
 public class BoxBounds extends Bounds{
+    private float speedl;
+    private float speedr;
     public float width, height, halfWidth, halfHeight;
     public Vector2f vec, center= new Vector2f();
     public InitUpdate init = new InitUpdate();
     public float overlapY, overlapX;
+    public BoxBounds(){
+
+    }
 
     public BoxBounds(Vector2f vec){
         this.width = vec.x;
@@ -62,11 +67,18 @@ public class BoxBounds extends Bounds{
         }else {
             if (dx<0){
                 player.transform.position.x = gameObject.transform.position.x + playerBounds.getWidth()-10;
+
+                System.out.println(speedl);
+                if (speedl>=70){
+                    player.setDeath(false);
+                }
                 init.setisCollidel(true);
             }else if (dx>0){
                 player.transform.position.x = gameObject.transform.position.x - playerBounds.getWidth()+9;
                 init.setisCollider(true);
-
+                if (init.getSpeedXr()>=70){
+                    player.setDeath(true);
+                }
             }
         }
     }
@@ -85,5 +97,11 @@ public class BoxBounds extends Bounds{
 
     }
 
+    public void setSpeedR(float speedr){
+        this.speedr = speedr;
+    }
+    public void setSpeedl(float speedl){
+        this.speedl = speedl;
+    }
 
 }

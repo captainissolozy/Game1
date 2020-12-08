@@ -3399,7 +3399,7 @@ public class InitUpdate extends Scene {
         obj5_skyblock.addComponent(new SpriteRenderer(sprites_forest.getSprite(30)));
         this.addGameObjectToScene(obj5_skyblock);
 
-        //Obj environment -- ของตกเเต่ง --
+        //Obj environment
         GameObject obj1_ev = new GameObject("Object 1 ev", new Transform(new Vector2f(290, 148), new Vector2f(48, 48)), false, true);
         obj1_ev.addComponent(new SpriteRenderer(sprites_forest.getSprite(62)));
         this.addGameObjectToScene(obj1_ev);
@@ -3618,8 +3618,9 @@ public class InitUpdate extends Scene {
     private int spriteIndex = 0;
     private float spriteFlipTime = 0.14f;
     private float spriteFlipTimeLeft = 0.0f;
-    private float speed = 100f, gravity=100f, speedXl=70,speedXr=70, speedY=0f;
+    private float speed = 100f, gravity=100f, speedXl,speedXr, speedY=0f;
     private boolean isCollideR = false, isCollideL = false;
+
 
     public void setisCollider(boolean collideR){
         this.isCollideR = collideR;
@@ -3627,9 +3628,17 @@ public class InitUpdate extends Scene {
     public void setisCollidel(boolean collideL){
         this.isCollideL = collideL;
     }
+    public float getspeedXl(){
+        return speedXl;
+    }
+    public float getSpeedXr(){
+        return speedXr;
+    }
+
 
     @Override
     public void update(float dt) {
+
         if (!knightidle.onGround){
             speedY = 0;
             knightidle.transform.position.y -= gravity*dt;
@@ -3676,7 +3685,7 @@ public class InitUpdate extends Scene {
             if (!isCollideL) {
                 knightidle.transform.position.x -= speedXl * dt;
             }else {
-                speedXl =70;
+                speedXl -=10f;
             }
             if (camera.position.x > -250 && knightidle.transform.position.x < 648 && knightidle.transform.position.x > 50){
                 camera.position.x = knightidle.transform.position.x-300;
@@ -3709,14 +3718,14 @@ public class InitUpdate extends Scene {
             knightidle.onGround = false;
 
 
-        }if (knightidle.transform.position.y < 400){
+        }if (knightidle.transform.position.y < 550){
             camera.position.y = 0;
         }
-        if (knightidle.transform.position.y >= 401&& knightidle.transform.position.y<920){
+        if (knightidle.transform.position.y >= 350&& knightidle.transform.position.y<900){
             camera.position.y = 350;
 
         }if (knightidle.transform.position.y >= 930 && knightidle.transform.position.y<1400){
-            camera.position.y = 850;
+            camera.position.y = 900;
 
         }if (knightidle.transform.position.y >= 1400 && knightidle.transform.position.y<1900){
             camera.position.y = 1400;
@@ -3724,12 +3733,9 @@ public class InitUpdate extends Scene {
         }if (knightidle.transform.position.y >= 1900 && knightidle.transform.position.y<2400){
             camera.position.y = 1900;
 
-        }if (knightidle.transform.position.y >= 2400 && knightidle.transform.position.y<2600){
-            camera.position.y = 2200;
-
-        }if (knightidle.transform.position.y >= 2601 && knightidle.transform.position.y<2700){
-        camera.position.y = 2400;
-    }
+        }if (knightidle.transform.position.y >= 2400){
+            camera.position.y = 2400;
+        }
 
 
         for (GameObject go : this.gameObjects) {
@@ -3742,9 +3748,18 @@ public class InitUpdate extends Scene {
             }
 
         }
+        if (knightidle.getDeath()){
+            camera.position.x = knightidle.transform.position.x-230;
+            knightidle.transform.position.x = -52;
+            knightidle.transform.position.y = 160;
+            if (KeyListener.isKeyPressed(GLFW_KEY_ENTER)){
+                knightidle.setDeath(false);
+            }
+        }
 
         this.renderer.render();
     }
 
 
 }
+
