@@ -15,4 +15,6 @@ public abstract class Bounds extends Component {
         BoxBounds box = (BoxBounds) b;
         box.resolveCollision(plr);
     }
+
+
 }

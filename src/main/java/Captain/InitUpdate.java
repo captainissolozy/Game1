@@ -3505,7 +3505,7 @@ public class InitUpdate extends Scene {
     private int spriteIndex = 0;
     private float spriteFlipTime = 0.14f;
     private float spriteFlipTimeLeft = 0.0f;
-    private float speed = 200f, gravity=100f, speedXl=0,speedXr=0, speedY=0;
+    private float speed = 100f, gravity=100f, speedXl=0,speedXr=0, speedY=0f;
     private boolean isCollideR = false, isCollideL = false;
 
     public void setisCollider(boolean collideR){
@@ -3517,8 +3517,16 @@ public class InitUpdate extends Scene {
 
     @Override
     public void update(float dt) {
+            if (!knightidle.onGround){
+                speedY = 0;
+                knightidle.transform.position.y -= gravity*dt;
+                gravity += 2f;
 
-            knightidle.transform.position.y -= gravity*dt;
+                if (gravity >=700){
+                        gravity = 700f;
+                    }
+            }else {gravity = 100f;}
+
             spriteFlipTimeLeft -= dt;
             if (spriteFlipTimeLeft <= 0) {
                 spriteFlipTimeLeft = spriteFlipTime;
@@ -3570,26 +3578,28 @@ public class InitUpdate extends Scene {
 
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
+            speedY += 5f;
+            System.out.println(speedY);
+
             if (knightidle.onGround){
-            knightidle.transform.position.y += 6500*dt;
-            knightidle.onGround = false;
+            knightidle.transform.position.y += (200+speedY)*dt;
+            if (speedY>=200){
+                System.out.println(speedY);
+                knightidle.onGround = false;
+                speedY = 200f;
             }
+            }
+
             if (camera.position.y<2400 && knightidle.transform.position.y < 2600 && knightidle.transform.position.y > 50){
-                camera.position.y = knightidle.transform.position.y-150;
+
 
             }else{
                 camera.position.y += 0;
 
                 }
-        } else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
+        } else if (!KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
 
-            if (camera.position.y>0  && knightidle.transform.position.y < 2600 && knightidle.transform.position.y > 50){
-            camera.position.y = knightidle.transform.position.y-150;
-
-            }else{
-                camera.position.y -= 0;
-
-        }
+            knightidle.onGround = false;
 
 
         }

@@ -2,13 +2,13 @@ package Physic2D.primitives;
 
 import Captain.GameObject;
 import Captain.InitUpdate;
-import Captain.KeyListener;
 import org.joml.Vector2f;
 
 public class BoxBounds extends Bounds{
     public float width, height, halfWidth, halfHeight;
     public Vector2f vec, center= new Vector2f();
     public InitUpdate init = new InitUpdate();
+    public float overlapY, overlapX;
 
     public BoxBounds(Vector2f vec){
         this.width = vec.x;
@@ -32,7 +32,6 @@ public class BoxBounds extends Bounds{
     public static boolean checkCollision(GameObject b1, GameObject b2){
         if (b1.transform.position.x+b1.transform.scale.x-9 >= b2.transform.position.x && b2.transform.position.x+b2.transform.scale.x >= b1.transform.position.x+9
                 && b1.transform.position.y+2+b1.transform.scale.y >= b2.transform.position.y && b2.transform.position.y+b2.transform.scale.y >= b1.transform.position.y){
-            System.out.println("Collide");
             return true;
         }else
             return false;
@@ -48,8 +47,8 @@ public class BoxBounds extends Bounds{
         float combineHalfWidths = playerBounds.halfWidth+this.halfWidth;
         float combineHalfHeights = playerBounds.halfHeight+this.halfHeight;
 
-        float overlapX = combineHalfWidths-Math.abs(dx);
-        float overlapY = combineHalfHeights-Math.abs(dy);
+        overlapX = combineHalfWidths-Math.abs(dx);
+        overlapY = combineHalfHeights-Math.abs(dy);
 
         if (overlapX >= overlapY){
             if (dy>0){
@@ -84,24 +83,5 @@ public class BoxBounds extends Bounds{
 
     }
 
-    public int getXDirection() {
-        if (KeyListener.isKeyPressed(262)) {
-            return 1;
-        } else {
-            return KeyListener.isKeyPressed(263) ? -1 : 0;
-        }
-    }
 
-    public int getYDirection() {
-        if (KeyListener.isKeyPressed(265)) {
-            return -1;
-        } else {
-            return KeyListener.isKeyPressed(264) ? 1 : 0;
-        }
-    }
-
-    public void xCauseCollision(){
-        int direction = this.getXDirection();
-        int movement = 10*direction;
-    }
 }

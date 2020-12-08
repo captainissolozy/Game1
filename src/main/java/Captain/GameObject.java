@@ -5,8 +5,6 @@ import util.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
-
 public class GameObject {
 
     private String name;
@@ -14,7 +12,7 @@ public class GameObject {
     public Transform transform;
     private boolean isPlayer=false;
     private boolean isBackground=false;
-    public boolean onGround = true;
+    public boolean onGround;
     private float velocityY;
 
     public GameObject(String name) {
@@ -66,10 +64,6 @@ public class GameObject {
     }
 
     public void update(float dt) {
-        if(onGround && KeyListener.isKeyPressed(GLFW_KEY_SPACE)){
-            addJumpForce();
-            this.onGround = false;
-        }
         for (int i=0; i < components.size(); i++) {
             components.get(i).update(dt);
         }
